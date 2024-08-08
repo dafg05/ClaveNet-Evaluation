@@ -2,6 +2,7 @@
 
 __pycache__
 .vscode
+venv
 
 tests/__pycache__
 evaluation/__pycache__
