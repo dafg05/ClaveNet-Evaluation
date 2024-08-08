@@ -1,16 +1,10 @@
 import pandas as pd
 
-from tests.constants import TEST_DATA_DIR
+from tests.constants import TEST_OUT_DIR, EVAL_RUN_PATH_1, EVAL_RUN_PATHS, REPORT_PATH
 
 from evaluation import analysis
 
-EVAL_RUN_PATH_1 = TEST_DATA_DIR / "eval_runs" / "full_solar-shadow_1711253355_evaluation_1712200441"
-EVAL_RUN_PATH_2 = TEST_DATA_DIR / "eval_runs" / "full_solar-shadow_1711265770_evaluation_1712202255"
-EVAL_RUN_PATH_3 = TEST_DATA_DIR / "eval_runs" / "full_solar-shadow_1711277715_evaluation_1712202211"
-EVAL_RUN_PATHS = [EVAL_RUN_PATH_1, EVAL_RUN_PATH_2, EVAL_RUN_PATH_3]
-REPORT_PATH = TEST_DATA_DIR / "wandb_training_runs_report.csv"
-
-OUT_DIR = TEST_DATA_DIR / "analysis_out"
+OUT_DIR = TEST_OUT_DIR / "analysis"
 
 LOSSES_DICT = {
     "model1": 0.1,
@@ -32,7 +26,7 @@ def test_get_min_loss_entries():
 def test_get_model_name_from_eval_run():
     eval_run_path = EVAL_RUN_PATH_1
     model_name = analysis.get_model_name_from_eval_run(eval_run_path)
-    assert model_name == "full_solar-shadow_1711253355", f'Got: {model_name}'
+    assert model_name == "smol_hopeful-gorge_1723146153", f'Got: {model_name}'
     print(f"Test get_model_name_from_eval_run passed")
 
 def test_analysis():

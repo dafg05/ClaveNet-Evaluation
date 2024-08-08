@@ -1,6 +1,7 @@
 torch
 pandas
 numpy
+pyfluidsynth
 git+https://github.com/dafg05/hvo_sequence.git
 git+https://github.com/dafg05/grooveEvaluator.git
 git+https://github.com/dafg05/ClaveNet-Architecture.git

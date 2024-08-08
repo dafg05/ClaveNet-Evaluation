@@ -6,3 +6,7 @@ venv
 
 tests/__pycache__
 evaluation/__pycache__
+
+tests/out/analysis/*
+tests/out/datasets/*
+tests/out/evaluation/*

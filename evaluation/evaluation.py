@@ -16,20 +16,20 @@ import grooveEvaluator.relativeComparison as rc
 
 NUM_POINTS = 10000
 
-def evaluateModel(out_dir: Path, model_path: Path, validation_set_path: Path, simple=False, num_points: int=NUM_POINTS):
+def evaluateModel(out_dir: Path, model_path: Path, evaluation_set_path: Path, simple=False, num_points: int=NUM_POINTS):
     """
-    Evaluate the model on a validation data set. Returns the evaluation time for bookkeeping purposes
+    Evaluate the model on an evaluation data set. Returns the evaluation time for bookkeeping purposes
     """
 
     model = loadModel(model_path)
-    validation_set = ValidationHvoDataset(validation_set_path)
+    evaluation_set = EvaluationHvoDataset(evaluation_set_path)
 
     # Initiazlize the datasets
-    monotonic_set = MonotonicHvoDataset(validation_set)
+    monotonic_set = MonotonicHvoDataset(evaluation_set)
     generated_set = GeneratedHvoDataset(monotonic_set, model)
     
     # Perform relative comparison
-    comparison_result_by_feat = rc.relative_comparison(generated_set, validation_set, simple=simple, num_points=num_points, padding_factor=2)
+    comparison_result_by_feat = rc.relative_comparison(generated_set, evaluation_set, simple=simple, num_points=num_points, padding_factor=2)
 
     # Create a directory to store the evaluation results
     evaluation_time = int(datetime.now().timestamp())
@@ -73,16 +73,16 @@ def loadModel(model_path: Path) -> GT:
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     return model
 
-def audioEval(out_dir: Path, model_path: Path, full_validation_set: ValidationHvoDataset, selected_indices: List[int]):
-    subset = [full_validation_set[ix] for ix in selected_indices]
+def audioEval(out_dir: Path, model_path: Path, full_evaluation_set: EvaluationHvoDataset, selected_indices: List[int]):
+    subset = [full_evaluation_set[ix] for ix in selected_indices]
     model = loadModel(model_path)
 
-    validation_subset = ValidationHvoDataset(None, subset=subset)
-    monotonic_subset = MonotonicHvoDataset(validation_subset)
+    evaluation_subset = EvaluationHvoDataset(None, subset=subset)
+    monotonic_subset = MonotonicHvoDataset(evaluation_subset)
     generated_subset = GeneratedHvoDataset(monotonic_subset, model)
 
-    for i in range(len(validation_subset)):
-        validation_subset[i].save_audio(f'{out_dir}/sample{i}_validation.wav', sf_path=SF_PATH)
+    for i in range(len(evaluation_subset)):
+        evaluation_subset[i].save_audio(f'{out_dir}/sample{i}_evaluation.wav', sf_path=SF_PATH)
         monotonic_subset[i].save_audio(f'{out_dir}/sample{i}_monotonic.wav', sf_path=SF_PATH)
         generated_subset[i].save_audio(f'{out_dir}/sample{i}_generated.wav', sf_path=SF_PATH)
 

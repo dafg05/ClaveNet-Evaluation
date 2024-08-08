@@ -1,0 +1,4 @@
+name,training_start_time,num_transformations,num_replacements,out_of_style_prob
+test-solarshadow,1723132208,1,1,0.1
+test-hopefulgorge,1723146153,2,2,0.2
+test-rosydurian,1723146262,3,3,0.3

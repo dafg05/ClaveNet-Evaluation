@@ -12,7 +12,7 @@ from hvo_sequence.hvo_seq import HVO_Sequence
 
 from evaluation.constants import *
 
-class ValidationHvoDataset(Dataset):
+class EvaluationHvoDataset(Dataset):
     """
     Based on: https://github.com/behzadhaki/GrooveEvaluator/blob/main/test/feature_extractor_test.py
     """
@@ -53,12 +53,12 @@ class ValidationHvoDataset(Dataset):
         return hvo_sequences 
 
 class MonotonicHvoDataset(Dataset):
-    def __init__(self, validationHvoDataset: ValidationHvoDataset):
-        self.monotonic_sequences = self.__populate_monotonic_sequences(validationHvoDataset)
+    def __init__(self, evaluationHvoDataset: EvaluationHvoDataset):
+        self.monotonic_sequences = self.__populate_monotonic_sequences(evaluationHvoDataset)
 
-    def __populate_monotonic_sequences(self, validationHvoDataset: ValidationHvoDataset):
+    def __populate_monotonic_sequences(self, evaluationHvoDataset: EvaluationHvoDataset):
         monotonic_sequences = []
-        for hvo_seq in validationHvoDataset:
+        for hvo_seq in evaluationHvoDataset:
             monotonic_seq = deepcopy(hvo_seq)
             monotonic_seq.hvo = monotonic_seq.flatten_voices()
             monotonic_sequences.append(monotonic_seq)

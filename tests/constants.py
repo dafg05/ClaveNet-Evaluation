@@ -1,11 +1,14 @@
 from pathlib import Path
 
-TEST_DATA_DIR = Path(__file__).parent.parent / 'testData'
-VALIDATION_SET_PATH = Path(__file__).parent.parent / 'AfroCuban_Validation_PreProcessed_On_03_04_2024_at_21_31_hrs'
+TEST_OUT_DIR = Path(__file__).parent / 'out'
+TEST_DATA_DIR = Path(__file__).parent / 'data'
 
-# Files for testing
-PREPROCESSED_DATASET_PATH = TEST_DATA_DIR / 'PreProcessed_On_21_03_2024_at_17_38_hrs'
-# NOTE: The git repo does not contain the processed data. The easiest thing to do is to run the processing test and place the output in the appropriate directory
-PROCESSED_DATASET_PATH = TEST_DATA_DIR / 'processed_at_1711223657'
-# NOTE: The git repo does not contain the preprocessed data, so this test will fail unless you run the preprocessing script from the preprocessing package and place the output in the appropriate directory
-MODEL_PATH = TEST_DATA_DIR / 'smol_solar-shadow_1711138656.pth'
+MODEL_PATH = TEST_DATA_DIR / 'smol_solar-shadow_1723132208.pth'
+EVALUATION_SET_PATH = TEST_DATA_DIR / 'test_preprocessed_evalset'
+
+EVAL_RUN_PATH_1 = TEST_DATA_DIR / "eval_runs" / "smol_hopeful-gorge_1723146153_evaluation_1723146433"
+EVAL_RUN_PATH_2 = TEST_DATA_DIR / "eval_runs" / "smol_rosy-durian_1723146262_evaluation_1723146470"
+EVAL_RUN_PATH_3 = TEST_DATA_DIR / "eval_runs" / "smol_solar-shadow_1723132208_evaluation_1723142369"
+
+EVAL_RUN_PATHS = [EVAL_RUN_PATH_1, EVAL_RUN_PATH_2, EVAL_RUN_PATH_3]
+REPORT_PATH = TEST_DATA_DIR / "test_training_runs_report.csv"
