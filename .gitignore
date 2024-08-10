@@ -10,3 +10,7 @@ evaluation/__pycache__
 tests/out/analysis/*
 tests/out/datasets/*
 tests/out/evaluation/*
+
+models/*
+analysis_out/*
+eval_runs/*
