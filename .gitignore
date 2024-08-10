@@ -14,3 +14,6 @@ tests/out/evaluation/*
 models/*
 analysis_out/*
 eval_runs/*
+eval_out/*
+
+mock_evaluation_set

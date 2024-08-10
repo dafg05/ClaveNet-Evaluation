@@ -26,7 +26,7 @@ def test_relative_comparison():
         # KDEs check
         kde_dict = comparison_result.kde_dict
         generated_kde = kde_dict[GENERATED_INTRASET_KEY]
-        validation_kde = kde_dict[VALIDATION_INTRASET_KEY]
+        validation_kde = kde_dict[EVALUATION_INTRASET_KEY]
         interset_kde = kde_dict[INTERSET_KEY]
         # Since the generated and validation sets are the same, their kdes should be the same
         assert np.all(np.equal(generated_kde.score_samples(reshaped_points), validation_kde.score_samples(reshaped_points))), f"Generated and validation kdes are not equal for feature {feat}"
@@ -59,7 +59,7 @@ def test_relative_comparison_simple():
         stats_dict = comparison_result.stats_dict
         
         generated_stats = stats_dict[GENERATED_INTRASET_KEY]
-        validation_stats = stats_dict[VALIDATION_INTRASET_KEY]
+        validation_stats = stats_dict[EVALUATION_INTRASET_KEY]
         interset_stats = stats_dict[INTERSET_KEY]
 
         generated_mean = generated_stats[MEAN_KEY]

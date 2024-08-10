@@ -114,7 +114,7 @@ def simple_results_dict_to_csv(results_dict: Dict[str, comparison.SimpleComparis
         data['num_points'].append(len(scr.points))
 
         gen_intraset_dict = scr.stats_dict[comparison.GENERATED_INTRASET_KEY]
-        eval_intraset_dict = scr.stats_dict[comparison.VALIDATION_INTRASET_KEY]
+        eval_intraset_dict = scr.stats_dict[comparison.EVALUATION_INTRASET_KEY]
         interset_dict = scr.stats_dict[comparison.INTERSET_KEY]
 
         data['gen_intraset_mean'].append(gen_intraset_dict[comparison.MEAN_KEY])

@@ -11,7 +11,7 @@ EVAL_RUNS_DIR = Path('eval_runs')
 MODELS_DIR = Path('models')
 EVALUATION_SET_PATH = Path('')
 REPORT_PATH = Path('wandb_training_runs_report.csv')
-OUT_DIR = Path('analysis_out')
+OUT_DIR = Path('detailed_analysis_out')
 
 COMPLETE_ANALYSIS_DATA = OUT_DIR / 'complete_analysis'
 REDUCED_ANALYSIS_DATA = OUT_DIR / 'reduced_analysis'
