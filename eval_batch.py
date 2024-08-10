@@ -5,14 +5,15 @@ from tqdm import tqdm
 
 from evaluation import evaluation as eval
 
-EVALUATION_RUNS_DIR = Path('eval_runs')
-EVALUATION_DATASET = Path('AfroCuban_Validation_PreProcessed_On_03_04_2024_at_21_31_hrs')
+EVALUATION_OUT_DIR = Path('eval_out')
+EVALUATION_DATASET = Path('mock_evaluation_set')
+MODELS_DIR = Path('models')
 EVALUATION_ERROR_LOGS = 'eval_errors.log'
 
 def eval_pipeline(model_paths):
     # name each run with a timestamp
     time_str = str(int(datetime.now().timestamp()))
-    run_dir = Path(EVALUATION_RUNS_DIR, time_str)
+    run_dir = Path(EVALUATION_OUT_DIR, time_str)
     Path.mkdir(run_dir, exist_ok=True)
 
     error_log_path = run_dir / EVALUATION_ERROR_LOGS
@@ -31,9 +32,9 @@ def eval_pipeline(model_paths):
                 error_count += 1
 
 
-def get_model_paths(run_dir):
-    return [model_path for model_path in run_dir.iterdir() if model_path.suffix == '.pth']
+def get_model_paths(models_dir):
+    return [model_path for model_path in models_dir.iterdir() if model_path.suffix == '.pth']
 
 if __name__ == "__main__":
-    run_dir = Path('train_runs', '1711248631')
-    model_paths = get_model_paths(run_dir)
+    model_paths = get_model_paths(MODELS_DIR)
+    eval_pipeline(model_paths)
